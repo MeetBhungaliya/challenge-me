@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import './colors.css';
+
+@theme {
+  --font-roboto-slab: "Roboto Slab", "serif";
+}
+
+@layer base {
+  * {
+    @apply antialiased;
+  }
+
+  body {
+    @apply font-roboto-slab;
+  }
+}
