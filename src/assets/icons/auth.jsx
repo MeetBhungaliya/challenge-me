@@ -174,7 +174,7 @@ export const ForgotPasswordIcon = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 export const CodeVerificationIcon = (props) => (
   <svg
@@ -219,4 +219,61 @@ export const CodeVerificationIcon = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
+
+export const ResetPasswordIcon = (props) => (
+  <svg
+    viewBox="0 0 50 50"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M41.229 31.1042C36.9374 35.375 30.7915 36.6875 25.3957 35L15.5832 44.7917C14.8749 45.5208 13.479 45.9583 12.479 45.8125L7.93736 45.1875C6.43736 44.9792 5.04152 43.5625 4.81236 42.0625L4.18736 37.5208C4.04152 36.5208 4.52069 35.125 5.20819 34.4167L14.9999 24.625C13.3332 19.2083 14.6249 13.0625 18.9165 8.79167C25.0624 2.64584 35.0415 2.64584 41.2082 8.79167C47.3749 14.9375 47.3749 24.9583 41.229 31.1042Z"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M14.354 36.4375L19.1457 41.2292"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M30.2085 22.9167C31.9344 22.9167 33.3335 21.5175 33.3335 19.7917C33.3335 18.0658 31.9344 16.6667 30.2085 16.6667C28.4826 16.6667 27.0835 18.0658 27.0835 19.7917C27.0835 21.5175 28.4826 22.9167 30.2085 22.9167Z"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const ResetPasswordSuccessIcon = (props) => (
+  <svg
+    viewBox="0 0 129 126"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <circle cx={123} cy={19} r={6} fill="currentColor" />
+    <circle cx={14} cy={7} r={7} fill="currentColor" />
+    <circle cx={7} cy={92} r={4} fill="currentColor" />
+    <circle cx={43} cy={123} r={3} fill="currentColor" />
+    <circle cx={85} cy={119} r={1} fill="currentColor" />
+    <circle cx={115} cy={111} r={2} fill="currentColor" />
+    <circle cx={120} cy={77} r={2} fill="currentColor" />
+    <circle cx={1} cy={52} r={1} fill="currentColor" />
+    <circle cx={74} cy={3} r={2} fill="currentColor" />
+    <circle cx={66} cy={63} r={50} fill="currentColor" />
+    <path
+      d="M61.3167 77.9428C60.9349 78.3268 60.414 78.5411 59.8728 78.5411C59.3317 78.5411 58.8107 78.3268 58.4289 77.9428L46.8975 66.4095C45.7008 65.2128 45.7008 63.2723 46.8975 62.0778L48.3414 60.6335C49.5385 59.4368 51.4768 59.4368 52.6735 60.6335L59.8728 67.8332L79.3264 48.3792C80.5235 47.1825 82.4637 47.1825 83.6585 48.3792L85.1024 49.8235C86.2991 51.0202 86.2991 52.9604 85.1024 54.1552L61.3167 77.9428Z"
+      fill="white"
+    />
+  </svg>
+);

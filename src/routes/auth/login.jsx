@@ -15,7 +15,7 @@ const LoginSchema = z.object({
   password: z
     .string()
     .nonempty("Password is required")
-    .min(6, "Minimum 6 character required"),
+    .min(6, "Password must be at least 6 characters"),
 });
 
 const Login = () => {
@@ -54,7 +54,7 @@ const Login = () => {
           </div>
           <Form {...loginForm}>
             <form noValidate onSubmit={loginForm.handleSubmit(onSubmit)}>
-              <div className="flex flex-col gap-y-4">
+              <div className="flex flex-col gap-y-5 md:gap-y-[30px]">
                 <Input
                   prefix={
                     <EmailIcon className="size-5 md:size-6 text-text-3" />

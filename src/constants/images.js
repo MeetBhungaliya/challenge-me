@@ -7,5 +7,6 @@ export const LOGO = BASE_URL + 'logo.png'
 export const LOGIN_SIDE = BASE_URL + IMAGES + 'login.png'
 export const FORGOTPASSWORD_SIDE = BASE_URL + IMAGES + 'forgot-password.png'
 export const CODEVERIFICATION_SIDE = BASE_URL + IMAGES + 'code-verification.png'
+export const RESETPASSWORD_SIDE = BASE_URL + IMAGES + 'reset-password.png'
 
 export const USER_FALLBACK_ICON = BASE_URL + ICONS + 'user_fallback.svg'

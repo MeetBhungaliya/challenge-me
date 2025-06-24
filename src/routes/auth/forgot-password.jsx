@@ -17,12 +17,17 @@ const ForgotPasswordSchema = z.object({
 const ForgotPassword = () => {
   const navigate = useNavigate();
 
-  const loginForm = useForm({
+  const forgotPasswordForm = useForm({
     resolver: zodResolver(ForgotPasswordSchema),
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "" },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = (values) => {
+    navigate({
+      pathname: "/code-verification",
+      state: { email: values.email },
+    });
+  };
 
   return (
     <div className="h-dvh flex flex-col md:flex-row">
@@ -35,11 +40,11 @@ const ForgotPassword = () => {
       </div>
       <div className="flex-1 ml-[4%] px-4 sm:px-6 flex items-center">
         <ArrowBack />
-        <div className="w-full max-w-[440px] sm:max-w-[570px] space-y-4 sm:space-y-6 lg:space-y-[30px]">
+        <div className="w-full max-w-[390px] sm:max-w-[430px] space-y-4 sm:space-y-6 lg:space-y-[30px]">
           <div className="w-max p-5 md:p-[25px] bg-bg-3 rounded-2xl">
             <ForgotPasswordIcon className="size-10 md:size-[50px] text-text-3" />
           </div>
-          <div className="w-full max-w-[430px]">
+          <div>
             <h4 className="text-2xl sm:text-[30px] lg:text-[38px] leading-normal font-bold text-text-1">
               Forgot Password?
             </h4>
@@ -47,8 +52,8 @@ const ForgotPassword = () => {
               No worries, we'll help you reset your password
             </p>
           </div>
-          <Form {...loginForm}>
-            <form noValidate onSubmit={loginForm.handleSubmit(onSubmit)}>
+          <Form {...forgotPasswordForm}>
+            <form noValidate onSubmit={forgotPasswordForm.handleSubmit(onSubmit)}>
               <Input
                 prefix={<EmailIcon className="size-5 md:size-6 text-text-3" />}
                 name="email"
