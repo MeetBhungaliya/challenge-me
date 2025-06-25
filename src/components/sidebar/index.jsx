@@ -58,8 +58,8 @@ const Sidebar = () => {
     [pathname]
   );
   return (
-    <SidebarComponent className="px-0 border-border-2 [&>*:first-child]:gap-y-5">
-      <SidebarHeader className="mx-6 p-0 py-[26px] border-b border-text-2 flex-row items-center gap-[10px]">
+    <SidebarComponent className="px-0 border-border-2 [&>*:first-child]:bg-bg-2 [&>*:first-child]:gap-y-5">
+      <SidebarHeader className="mx-6 p-0 py-6 border-b border-text-2 flex-row items-center gap-[10px]">
         <Img className="size-11" src={LOGO} alt="logo" />
         <h2 className="text-text-3 text-[22px] font-bold">
           Challenge <span className="text-text-1">Me</span>
@@ -73,7 +73,12 @@ const Sidebar = () => {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     asChild
-                    className="[&>svg]:size-6 px-3 py-3.5 bg-bg-3 hover:bg-bg-3 gap-2 rounded-lg"
+                    className={cn(
+                      "[&>svg]:size-6 px-3 py-3.5 active:text-text-1 hover:bg-bg-3 gap-2 rounded-lg",
+                      index === activeIndex
+                        ? "active:bg-text-3"
+                        : "active:bg-bg-3"
+                    )}
                   >
                     <Link
                       to={{
@@ -81,21 +86,13 @@ const Sidebar = () => {
                         search: new URLSearchParams(item.search).toString(),
                       }}
                       className={cn(
-                        "h-auto gap-[10px] rounded-[18px]",
+                        "h-auto gap-[10px] rounded-[18px] text-text-1 hover:text-text-1",
                         index === activeIndex
-                          ? "text-text-1 bg-text-3 hover:bg-text-3"
-                          : "text-text-1 bg-bg-3 hover:bg-bg-3"
+                          ? "bg-text-3 hover:bg-text-3"
+                          : "bg-bg-3 hover:bg-bg-3"
                       )}
                     >
-                      {item.icon ? (
-                        <item.icon
-                          className={cn(
-                            index === activeIndex
-                              ? "text-text-1"
-                              : "text-text-2"
-                          )}
-                        />
-                      ) : null}
+                      {item.icon ? <item.icon className="text-text-1" /> : null}
                       <span className="scroll-m-20 text-sm sm:text-base font-semibold text-current">
                         {item.title}
                       </span>
