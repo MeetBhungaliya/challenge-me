@@ -9,3 +9,12 @@ export function cn(...inputs) {
 export const onImageError = (e) => {
   e.target.src = USER_FALLBACK_ICON
 }
+
+export const toQueryString = (obj) => {
+  if (!obj) return ""
+  return Object.entries(obj)
+    .map(([key, value]) =>
+      `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+    )
+    .join('&');
+}

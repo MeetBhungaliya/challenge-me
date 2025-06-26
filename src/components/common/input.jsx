@@ -42,11 +42,11 @@ const Input = ({
                   required
                   placeholder={placeholder}
                   className={cn(
-                    "py-3 sm:py-3.5 px-4 sm:px-6 bg-bg-2 rounded-2xl sm:rounded-3xl font-medium !text-base sm:!text-lg placeholder:text-text-2 placeholder:font-medium placeholder:text-base sm:placeholder:text-lg focus-visible:!ring-border-1 focus-visible:ring-offset-0",
+                    "py-3 sm:py-3.5 px-4 sm:px-6 bg-bg-2 rounded-lg sm:rounded-xl !text-sm sm:!text-base placeholder:text-text-4 placeholder:text-base sm:placeholder:text-lg",
                     errors?.[name]?.message
-                      ? "text-red-400 focus-visible:ring-red-500 border border-red-400 focus-visible:ring-1"
-                      : "text-text-1 border border-transparent focus-visible:ring-1 focus-visible:ring-main",
-                    prefix ? "pl-[46px] sm:pl-[60px]" : "",
+                      ? "text-red-400 border border-red-400"
+                      : "text-text-1 border border-bg-2",
+                    prefix ? "pl-[46px] sm:pl-[55px]" : "",
                     className
                   )}
                 />
@@ -59,11 +59,11 @@ const Input = ({
                   required
                   placeholder={placeholder}
                   className={cn(
-                    "py-3 sm:py-3.5 px-4 sm:px-6 bg-bg-2 rounded-2xl sm:rounded-3xl font-medium !text-base sm:!text-lg placeholder:text-text-2 placeholder:font-medium placeholder:text-base sm:placeholder:text-lg focus-visible:!ring-border-1 focus-visible:ring-offset-0",
+                    "py-3 sm:py-3.5 px-4 sm:px-6 bg-bg-2 rounded-2xl sm:rounded-3xl font-medium !text-base sm:!text-lg placeholder:text-text-2 placeholder:font-medium placeholder:text-base sm:placeholder:text-lg",
                     errors?.[name]?.message
-                      ? "text-red-400 focus-visible:ring-red-500 border border-red-400 focus-visible:ring-1"
-                      : "text-text-1 border border-transparent focus-visible:ring-1 focus-visible:ring-main",
-                    prefix ? "pl-[46px] sm:pl-[60px]" : "",
+                      ? "text-red-400 border border-red-400"
+                      : "text-text-1 border border-bg-2",
+                    prefix ? "pl-[46px] sm:pl-[55px]" : "",
                     className
                   )}
                 />
@@ -72,10 +72,10 @@ const Input = ({
             {prefix && (
               <div
                 className={cn(
-                  "absolute flex items-center size-5 sm:size-6",
+                  "absolute flex items-center",
                   textarea
-                    ? "top-3.5 sm:top-4 left-4 sm:left-[22px]"
-                    : "top-1/2 -translate-y-1/2 left-4 sm:left-[22px]"
+                    ? "top-3.5 sm:top-4 left-4 sm:left-5"
+                    : "top-1/2 -translate-y-1/2 left-4 sm:left-5"
                 )}
               >
                 {prefix}

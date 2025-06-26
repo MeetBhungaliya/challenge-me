@@ -11,6 +11,7 @@ import { RESETPASSWORD_SIDE } from "@/constants/images";
 import ResetPasswordSuccess from "@/modals/reset-password-success";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { useBoolean } from "usehooks-ts";
 import { z } from "zod";
 
@@ -28,6 +29,7 @@ const ResetPasswordSchema = z
   });
 
 const ResetPassword = () => {
+  const navigate = useNavigate();
   const isPasswordReset = useBoolean(false)
 
   const resetPasswordForm = useForm({
@@ -98,9 +100,10 @@ const ResetPassword = () => {
       </div>
       <ResetPasswordSuccess
         state={isPasswordReset}
-        onClose={()=>{
+        onClose={() => {
           isPasswordReset.setFalse()
           resetPasswordForm.reset();
+          navigate("/login");
         }}
       />
     </>

@@ -4,7 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { faker } from "@faker-js/faker";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 const Dashboard = () => {
   const cards = [
@@ -57,7 +57,7 @@ const Dashboard = () => {
             <div className="w-full flex flex-col">
               {new Array(faker.number.int({ min: 8, max: 30 }))
                 .fill()
-                .map((_, index,array) => {
+                .map((_, index, array) => {
                   const action = faker.helpers.arrayElement([0, 1, 2]);
                   const isLast = index === array.length - 1;
                   return (
@@ -79,15 +79,15 @@ const Dashboard = () => {
                             action === 0
                               ? "text-[#FF0000]"
                               : action === 1
-                              ? "text-[#FB923C]"
-                              : "text-[#1566DF]"
+                                ? "text-[#FB923C]"
+                                : "text-[#1566DF]"
                           )}
                         >
                           {action === 0
                             ? "Deletion"
                             : action === 1
-                            ? "Suspended"
-                            : "Admin"}
+                              ? "Suspended"
+                              : "Admin"}
                         </p>
                       </div>
                       {!isLast && (

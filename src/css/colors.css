@@ -24,9 +24,12 @@
   --color-bg-1: #161616;
   --color-bg-2: #212121;
   --color-bg-3: #1C1C1C;
+  --color-bg-4: #E8E8EB;
   --color-text-1: #ffffff;
   --color-text-2: #505050;
   --color-text-3: #2E8B27;
+  --color-text-4: #7F8892;
+  --color-text-5: #676767;
 }
 
 :root {

@@ -23,8 +23,7 @@ const ForgotPassword = () => {
   });
 
   const onSubmit = (values) => {
-    navigate({
-      pathname: "/code-verification",
+    navigate("/code-verification", {
       state: { email: values.email },
     });
   };

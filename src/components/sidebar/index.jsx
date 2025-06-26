@@ -16,10 +16,12 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { LOGO } from "@/constants/images";
-import { cn } from "@/lib/utils";
+import { cn, toQueryString } from "@/lib/utils";
 import { useMemo } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Img from "../ui/Img";
+import { LIMIT, PAGE } from "@/constants/common";
+import { USERMANAGEMENTTABS } from "@/routes/user-management";
 
 const items = [
   {
@@ -31,6 +33,7 @@ const items = [
     title: "User Management",
     icon: UserIcon,
     path: "/user-management",
+    search: { page: PAGE, limit: LIMIT, tab: USERMANAGEMENTTABS.at(0).value },
   },
   {
     title: "Challenge Management",
@@ -83,7 +86,7 @@ const Sidebar = () => {
                     <Link
                       to={{
                         pathname: item.path,
-                        search: new URLSearchParams(item.search).toString(),
+                        search: toQueryString(item.search),
                       }}
                       className={cn(
                         "h-auto gap-[10px] rounded-[18px] text-text-1 hover:text-text-1",

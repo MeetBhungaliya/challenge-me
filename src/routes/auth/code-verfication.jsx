@@ -6,8 +6,7 @@ import {
   Form,
   FormControl,
   FormField,
-  FormItem,
-  FormMessage,
+  FormItem
 } from "@/components/ui/form";
 import {
   InputOTP,
@@ -40,8 +39,7 @@ const CodeVerification = () => {
   });
 
   const onSubmit = (values) => {
-    navigate({
-      pathname: "/reset-password",
+    navigate("/reset-password", {
       state: { email: state.email, code: values.otp },
     });
   };
