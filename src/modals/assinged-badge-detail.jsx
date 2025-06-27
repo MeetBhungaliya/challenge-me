@@ -15,8 +15,11 @@ import { useMemo } from "react";
 import { faker } from "@faker-js/faker";
 import { EmailIcon } from "@/assets/icons/auth";
 import { PhoneIcon } from "@/assets/icons/user-management";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { BadgeIcon } from "@/assets/icons/badges";
+import { BADGEBG } from "@/constants/images";
 
-const SuspendUserDetail = ({ state, onClose }) => {
+const AssignedBadgeDetail = ({ state, onClose }) => {
   const userData = useMemo(
     () => ({
       id: faker.database.mongodbObjectId(),
@@ -34,21 +37,24 @@ const SuspendUserDetail = ({ state, onClose }) => {
     onClose();
   };
   return (
-    <Dialog open={state.value} onOpenChange={handleClose}>
+    <Dialog open={state.value} onOpenChange={handleClose} modal={false}>
+      {state.value && (
+        <div className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 z-50 fixed inset-0 bg-black/50" />
+      )}
       <DialogContent
         showCloseButton={false}
-        className="w-full sm:max-w-[565px] p-5 md:p-[30px] rounded-2xl md:rounded-3xl bg-bg-2 border-none"
+        className="w-full sm:max-w-[565px] p-5 md:p-[30px] rounded-2xl md:rounded-3xl bg-bg-2 border-none overflow-hidden"
       >
         <DialogHeader className="w-full relative">
           <DialogTitle className="text-text-1 text-2xl font-bold text-center">
-            Suspended User Detail
+            Badge Detail
           </DialogTitle>
           <DialogClose className="absolute top-1/2 right-0 -translate-y-1/2 size-6 flex justify-center items-center border border-text-2 rounded-full cursor-pointer">
             <X className="text-text-2 size-3.5" />
           </DialogClose>
           <VisuallyHidden.Root>
             <DialogDescription className="text-base sm:text-lg lg:text-xl text-text-2 text-center">
-              suspend user detail
+              assign badge detail
             </DialogDescription>
           </VisuallyHidden.Root>
         </DialogHeader>
@@ -73,16 +79,32 @@ const SuspendUserDetail = ({ state, onClose }) => {
             </div>
           </div>
         </div>
-        <div className="mt-2 sm:mt-5 space-y-1.5">
-          <p className="text-text-1 text-lg font-semibold">Suspend reason</p>
-          <p className="text-text-6 text-lg">
-            User violated community guidelines by posting inappropriate or
-            harmful content.
-          </p>
+        <div className="w-full mt-2 sm:mt-5 space-y-1.5 overflow-hidden">
+          <p className="text-text-1 text-lg font-semibold">Badges</p>
+          <div className="w-full h-[192px] flex overflow-hidden">
+            <ScrollArea type="always" className="w-full pb-3">
+              <div className="flex items-center gap-x-5">
+                {new Array(20).fill().map((_, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        backgroundImage: `url(${BADGEBG})`,
+                      }}
+                      className="h-[180px] min-w-[155px] max-w-[155px] rounded-2xl flex justify-center items-center bg-bg-1 bg-blend-color-burn"
+                    >
+                      <BadgeIcon className="w-[55px]" />
+                    </div>
+                  );
+                })}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
   );
 };
 
-export default SuspendUserDetail;
+export default AssignedBadgeDetail;

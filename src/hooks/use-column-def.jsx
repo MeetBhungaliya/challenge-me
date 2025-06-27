@@ -1,4 +1,5 @@
 import { EyeonIcon } from "@/assets/icons/auth";
+import { BadgeIcon, EditIcon } from "@/assets/icons/badges";
 import { PausecircleIcon, UseroctagonIcon } from "@/assets/icons/common";
 import { BannedIcon } from "@/assets/icons/dashbord";
 import {
@@ -271,9 +272,124 @@ const useColumnDef = (helpers) => {
     [width, searchParams.get("tab")]
   );
 
+  const badgesColumns = useMemo(
+    () => [
+      columnHelper.accessor("name", {
+        header: "Badge Name",
+        cell: (props) => (
+          <div className="flex items-center gap-x-2">
+            <BadgeIcon className="w-6" />
+            <TableText text={props.getValue()} />
+          </div>
+        ),
+        size: getColumnSize({ "2xl": 620, xl: 520, sm: 420, default: 320 }),
+      }),
+
+      columnHelper.accessor("description", {
+        header: "Description",
+        cell: (props) => (
+          <TableText
+            text={props.getValue()}
+            className="w-full max-w-[406px] whitespace-nowrap overflow-hidden text-ellipsis"
+          />
+        ),
+        size: getColumnSize({ "2xl": 720, xl: 620, sm: 520, default: 220 }),
+      }),
+
+      columnHelper.display({
+        id: "actions-align-center",
+        header: "Action",
+        cell: (props) => (
+          <div className="flex justify-center gap-x-2">
+            <button
+              type="button"
+              className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+              onClick={() => helpers?.onViewBadgeDetail()}
+            >
+              <EyeonIcon className="size-5 text-text-1" />
+            </button>
+            <button
+              type="button"
+              className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+              onClick={() => helpers?.onEditBadge(props.row?.original)}
+            >
+              <EditIcon className="size-5 text-text-1" />
+            </button>
+            <button
+              type="button"
+              className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+              onClick={() => helpers?.onDeleteBadge()}
+            >
+              <TrashIcon className="size-5 text-[#FF0000]" />
+            </button>
+          </div>
+        ),
+      }),
+    ],
+    []
+  );
+
+  const assignedBadgeColumns = useMemo(
+    () => [
+      columnHelper.accessor("user_name", {
+        header: "User Name",
+        cell: (props) => (
+          <div className="flex items-center gap-x-4">
+            <Img
+              src={props.row.original?.user_img}
+              className="size-10 rounded-full"
+            />
+            <TableText
+              className="max-w-[200px]"
+              text={`${props.row?.original?.fname} ${props?.row?.original?.lname}`}
+            />
+          </div>
+        ),
+        size: getColumnSize({ "3xl": 350, "2xl": 300, sm: 280, default: 200 }),
+      }),
+
+      columnHelper.accessor("email", {
+        header: "Email",
+        cell: (props) => <TableText text={props.getValue()} />,
+        size: getColumnSize({ "2xl": 450, xl: 400, sm: 300, default: 250 }),
+      }),
+
+      columnHelper.accessor("number", {
+        header: "Phone Number",
+        cell: (props) => <TableText text={props.getValue()} />,
+        size: getColumnSize({ "3xl": 320, "2xl": 280, sm: 250, default: 220 }),
+      }),
+
+      columnHelper.accessor("badge", {
+        header: "Badge",
+        cell: (props) => <TableText text={props.getValue()} />,
+        size: getColumnSize({ "3xl": 280, sm: 220, default: 200 }),
+      }),
+
+      columnHelper.display({
+        id: "actions-align-center",
+        header: "Action",
+        cell: () => (
+          <div className="flex justify-center gap-x-2">
+            <button
+              type="button"
+              className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+              onClick={helpers?.onAssignedViewBadgeDetail}
+            >
+              <EyeonIcon className="size-5 text-text-1" />
+            </button>
+          </div>
+        ),
+      }),
+    ],
+    [width, searchParams.get("tab")]
+  );
+
   return {
     userProfileColumns,
     challengeManagementColumns,
+    badgesColumns,
+    assignedBadgeColumns,
   };
 };
 

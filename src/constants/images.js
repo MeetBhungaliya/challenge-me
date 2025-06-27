@@ -10,5 +10,6 @@ export const CODEVERIFICATION_SIDE = BASE_URL + IMAGES + 'code-verification.png'
 export const RESETPASSWORD_SIDE = BASE_URL + IMAGES + 'reset-password.png'
 export const DANCER1 = BASE_URL + IMAGES + 'dancer1.png'
 export const DANCER2 = BASE_URL + IMAGES + 'dancer2.png'
+export const BADGEBG = BASE_URL + IMAGES + 'badge-bg.png'
 
 export const USER_FALLBACK_ICON = BASE_URL + ICONS + 'user_fallback.svg'
