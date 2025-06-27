@@ -50,11 +50,13 @@ const items = [
     title: "Badges",
     icon: BadgeIcon,
     path: "/badges",
+    search: { page: PAGE, limit: LIMIT },
   },
   {
     title: "Category Management",
     icon: CategoryManagementIcon,
     path: "/category-management",
+    search: { page: PAGE, limit: LIMIT },
   },
 ];
 

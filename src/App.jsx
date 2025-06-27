@@ -6,6 +6,7 @@ import ResetPassword from "./routes/auth/reset-password";
 import Badges from "./routes/badges";
 import AssignedBadge from "./routes/badges/assigned-badge";
 import BadgeLayout from "./routes/badges/layout";
+import CategoryManagement from "./routes/category-management";
 import ChallengeManagement from "./routes/challenge-management";
 import ChallengeManagementLayout from "./routes/challenge-management/layout";
 import Dashboard from "./routes/dashboard";
@@ -45,6 +46,7 @@ const App = () => {
           <Route index element={<Badges />} />
           <Route path="assigned-badge" element={<AssignedBadge />} />
         </Route>
+        <Route path="/category-management" element={<CategoryManagement />} />
       </Route>
     </Routes>
   );
