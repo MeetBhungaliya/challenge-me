@@ -59,7 +59,7 @@ const Input = ({
                   required
                   placeholder={placeholder}
                   className={cn(
-                    "py-3 sm:py-3.5 px-4 sm:px-6 bg-bg-2 rounded-2xl sm:rounded-3xl font-medium !text-base sm:!text-lg placeholder:text-text-2 placeholder:font-medium placeholder:text-base sm:placeholder:text-lg",
+                    "py-3 sm:py-3.5 px-4 sm:px-6 bg-bg-2 rounded-2xl sm:rounded-3xl !text-base sm:!text-lg placeholder:text-text-4 placeholder:text-base sm:placeholder:text-lg",
                     errors?.[name]?.message
                       ? "text-red-400 border border-red-400"
                       : "text-text-1 border border-bg-2",

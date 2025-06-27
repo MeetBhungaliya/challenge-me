@@ -1,10 +1,15 @@
 import { EyeonIcon } from "@/assets/icons/auth";
 import { PausecircleIcon, UseroctagonIcon } from "@/assets/icons/common";
 import { BannedIcon } from "@/assets/icons/dashbord";
-import { CheckCircleIcon, UnblockIcon } from "@/assets/icons/user-management";
+import {
+  CheckCircleIcon,
+  TrashIcon,
+  UnblockIcon,
+} from "@/assets/icons/user-management";
 import Img from "@/components/ui/Img";
 import { breakpoints } from "@/constants/common";
 import { cn } from "@/lib/utils";
+import { CHALLENGEMANAGEMENTTABS } from "@/routes/challenge-management";
 import { USERMANAGEMENTTABS } from "@/routes/user-management";
 import { createColumnHelper } from "@tanstack/react-table";
 import moment from "moment";
@@ -166,8 +171,109 @@ const useColumnDef = (helpers) => {
     [width, searchParams.get("tab")]
   );
 
+  const challengeManagementColumns = useMemo(
+    () =>
+      [
+        columnHelper.accessor("title", {
+          header: "Challenge Title",
+          cell: (props) => <TableText text={props.getValue()} />,
+          size:
+            searchParams.get("tab") === CHALLENGEMANAGEMENTTABS.at(0).value
+              ? getColumnSize({ "2xl": 520, xl: 420, sm: 320, default: 220 })
+              : getColumnSize({ "2xl": 400, xl: 350, sm: 200, default: 250 }),
+        }),
+
+        columnHelper.accessor("user_name", {
+          header: "User Name",
+          cell: (props) => (
+            <div className="flex items-center gap-x-4">
+              <Img
+                src={props.row.original?.user_img}
+                className="size-10 rounded-full"
+              />
+              <TableText
+                className="max-w-[200px]"
+                text={`${props.row?.original?.fname} ${props?.row?.original?.lname}`}
+              />
+            </div>
+          ),
+          size:
+            searchParams.get("tab") === CHALLENGEMANAGEMENTTABS.at(0).value
+              ? getColumnSize({ "2xl": 450, xl: 400, sm: 300, default: 250 })
+              : getColumnSize({ "2xl": 350, xl: 300, sm: 200, default: 150 }),
+        }),
+
+        searchParams.get("tab") === CHALLENGEMANAGEMENTTABS.at(1).value
+          ? columnHelper.accessor("invitee_user_name", {
+              header: "Invitee",
+              cell: (props) => (
+                <div className="flex items-center gap-x-4">
+                  <Img
+                    src={props.row.original?.invitee_user_img}
+                    className="size-10 rounded-full"
+                  />
+                  <TableText
+                    className="max-w-[200px]"
+                    text={`${props.row?.original?.invitee_fname} ${props?.row?.original?.invitee_lname}`}
+                  />
+                </div>
+              ),
+              size:
+                searchParams.get("tab") === CHALLENGEMANAGEMENTTABS.at(0).value
+                  ? getColumnSize({
+                      "2xl": 450,
+                      xl: 400,
+                      sm: 300,
+                      default: 250,
+                    })
+                  : getColumnSize({
+                      "2xl": 350,
+                      xl: 300,
+                      sm: 200,
+                      default: 150,
+                    }),
+            })
+          : null,
+
+        columnHelper.accessor("date", {
+          header: "Date",
+          cell: (props) => (
+            <TableText text={moment(props.getValue()).format("DD/MM/YYYY")} />
+          ),
+          size:
+            searchParams.get("tab") === CHALLENGEMANAGEMENTTABS.at(0).value
+              ? getColumnSize({ "2xl": 450, xl: 400, sm: 300, default: 250 })
+              : getColumnSize({ "2xl": 320, xl: 220, sm: 170, default: 150 }),
+        }),
+
+        columnHelper.display({
+          id: "actions-align-center",
+          header: "Action",
+          cell: (props) => (
+            <div className="flex justify-center gap-x-2">
+              <Link
+                className="size-10 flex justify-center items-center rounded-full bg-bg-2"
+                to={`/challenge-management/${props.row?.original?.id}`}
+              >
+                <EyeonIcon className="size-5 text-text-1" />
+              </Link>
+              <button
+                type="button"
+                className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+                onClick={helpers?.onSuspendUser}
+              >
+                <TrashIcon className="size-5 text-[#FF0000]" />
+              </button>
+            </div>
+          ),
+        }),
+      ].filter((e) => e),
+    [width, searchParams.get("tab")]
+  );
+
   return {
     userProfileColumns,
+    challengeManagementColumns,
   };
 };
 

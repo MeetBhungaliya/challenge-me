@@ -44,7 +44,7 @@ const Header = () => {
         <Breadcrumb>
           <BreadcrumbList className="gap-0.5 sm:gap-1.5 lg:gap-2.5">
             <BreadcrumbItem className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[26px]">
-              <BreadcrumbPage className="font-semibold text-text-1">
+              <BreadcrumbPage className="font-bold text-text-1">
                 {getLinks?.at(0)?.title}
               </BreadcrumbPage>
             </BreadcrumbItem>
@@ -57,7 +57,7 @@ const Header = () => {
                     key={index}
                     className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[26px]"
                   >
-                    <BreadcrumbPage className="font-semibold text-text-1">
+                    <BreadcrumbPage className="font-bold text-text-1">
                       {route.title}
                     </BreadcrumbPage>
                   </BreadcrumbItem>

@@ -7,8 +7,9 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Outlet, useLocation, useParams } from "react-router";
+import { USERMANAGEMENTTABS } from ".";
 
-const ChallengeLayout = () => {
+const UserManagementLayout = () => {
   const { id } = useParams();
   const { pathname } = useLocation();
 
@@ -21,9 +22,10 @@ const ChallengeLayout = () => {
               <BreadcrumbLink
                 to={{
                   pathname: "/user-management",
-                  search: "page=1&limit=10&tab=active",
+                  search: `page=1&limit=10&tab=${
+                    USERMANAGEMENTTABS.at(0).value
+                  }`,
                 }}
-                search="page=1&limit=10&tab=active"
                 className="text-text-2 hover:text-text-2"
               >
                 User Management
@@ -63,4 +65,4 @@ const ChallengeLayout = () => {
   );
 };
 
-export default ChallengeLayout;
+export default UserManagementLayout;

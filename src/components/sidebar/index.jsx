@@ -15,13 +15,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { LIMIT, PAGE } from "@/constants/common";
 import { LOGO } from "@/constants/images";
 import { cn, toQueryString } from "@/lib/utils";
+import { CHALLENGEMANAGEMENTTABS } from "@/routes/challenge-management";
+import { USERMANAGEMENTTABS } from "@/routes/user-management";
 import { useMemo } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Img from "../ui/Img";
-import { LIMIT, PAGE } from "@/constants/common";
-import { USERMANAGEMENTTABS } from "@/routes/user-management";
 
 const items = [
   {
@@ -39,6 +40,11 @@ const items = [
     title: "Challenge Management",
     icon: ChallengeManagementIcon,
     path: "/challenge-management",
+    search: {
+      page: PAGE,
+      limit: LIMIT,
+      tab: CHALLENGEMANAGEMENTTABS.at(0).value,
+    },
   },
   {
     title: "Badges",
@@ -96,7 +102,7 @@ const Sidebar = () => {
                       )}
                     >
                       {item.icon ? <item.icon className="text-text-1" /> : null}
-                      <span className="scroll-m-20 text-sm sm:text-base font-semibold text-current">
+                      <span className="scroll-m-20 text-sm sm:text-base text-current">
                         {item.title}
                       </span>
                     </Link>

@@ -50,7 +50,7 @@ const Pagination = ({ totalRecords }) => {
   );
 
   return (
-    <div className="py-3 md:py-3.5 px-5 md:px-6 flex justify-between items-center flex-row">
+    <div className="py-4 md:py-5 px-5 md:px-6 border-t border-[#282929] flex justify-between items-center flex-row">
       <div className="flex items-center gap-x-[10px]">
         <Select
           value={limit}

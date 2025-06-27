@@ -5,55 +5,41 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import useColumnDef from "@/hooks/use-column-def";
 import { cn } from "@/lib/utils";
-import AssignAdmin from "@/modals/assign-admin";
-import SuspendUser from "@/modals/suspend-user";
-import SuspendUserDetail from "@/modals/suspend-user-detail";
 import { faker } from "@faker-js/faker";
-import { on } from "events";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router";
-import { useBoolean } from "usehooks-ts";
 
-export const USERMANAGEMENTTABS = [
+export const CHALLENGEMANAGEMENTTABS = [
   {
     label: "Active",
     value: "active",
   },
   {
-    label: "Suspended",
-    value: "suspended",
-  },
-  {
-    label: "Banned",
-    value: "banned",
-  },
-  {
-    label: "Admin",
-    value: "admin",
+    label: "Archived",
+    value: "archived",
   },
 ];
 
-const UserManagement = () => {
-  const assignAdmin = useBoolean(false);
-  const suspendUser = useBoolean(false);
-  const suspendUserDetail = useBoolean(false);
+const ChallengeManagement = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searhForm = useForm({
     defaultValues: { search: "" },
   });
 
-  const userData = useMemo(
+  const data = useMemo(
     () =>
       new Array(69).fill().map(() => ({
         id: faker.database.mongodbObjectId(),
         user_img: faker.image.avatar(),
+        title: "30-Day Fitness Challenge",
         fname: faker.person.firstName(),
         lname: faker.person.lastName(),
-        email: faker.internet.email(),
-        number: "+1 1234 5879",
-        dob: faker.date.past({ years: 20 }),
+        invitee_user_img: faker.image.avatar(),
+        invitee_fname: faker.person.firstName(),
+        invitee_lname: faker.person.lastName(),
+        date: faker.date.future({ years: 1 }),
       })),
     [
       searchParams.get("page"),
@@ -62,11 +48,7 @@ const UserManagement = () => {
     ]
   );
 
-  const { userProfileColumns } = useColumnDef({
-    onAdminAssing: assignAdmin.setTrue,
-    onSuspendUser: suspendUser.setTrue,
-    onSuspendUserDetail: suspendUserDetail.setTrue,
-  });
+  const { challengeManagementColumns } = useColumnDef();
 
   return (
     <>
@@ -82,8 +64,8 @@ const UserManagement = () => {
               />
             </form>
           </Form>
-          <div className="w-full max-w-[466px] p-1.5 flex items-center gap-x-1 bg-bg-3 rounded-full">
-            {USERMANAGEMENTTABS.map((data, index) => {
+          <div className="w-full max-w-[288px] p-1.5 flex items-center gap-x-1 bg-bg-3 rounded-full">
+            {CHALLENGEMANAGEMENTTABS.map((data, index) => {
               return (
                 <Button
                   key={index}
@@ -108,21 +90,14 @@ const UserManagement = () => {
         </div>
         <DataTable
           loading={false}
-          data={userData}
-          columns={userProfileColumns}
-          totalItems={userData.length}
+          data={data}
+          columns={challengeManagementColumns}
+          totalItems={data.length}
           loader={false}
         />
       </div>
-
-      <AssignAdmin state={assignAdmin} onClose={() => assignAdmin.setFalse()} />
-      <SuspendUser state={suspendUser} onClose={() => suspendUser.setFalse()} />
-      <SuspendUserDetail
-        state={suspendUserDetail}
-        onClose={() => suspendUserDetail.setFalse()}
-      />
     </>
   );
 };
 
-export default UserManagement;
+export default ChallengeManagement;
