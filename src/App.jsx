@@ -6,6 +6,8 @@ import ResetPassword from "./routes/auth/reset-password";
 import Dashboard from "./routes/dashboard";
 import Layout from "./routes/layout";
 import UserManagement from "./routes/user-management";
+import ChallengeDetails from "./routes/user-management/challenge-details";
+import ChallengeLayout from "./routes/user-management/layout";
 import UserDetails from "./routes/user-management/user-details";
 
 const App = () => {
@@ -18,9 +20,12 @@ const App = () => {
 
       <Route path="/" element={<Layout />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/user-management">
+        <Route path="/user-management" element={<ChallengeLayout />}>
           <Route index element={<UserManagement />} />
-          <Route path=":id" element={<UserDetails />} />
+          <Route path=":id">
+            <Route index element={<UserDetails />} />
+            <Route path="challenge-details" element={<ChallengeDetails />} />
+          </Route>
         </Route>
       </Route>
     </Routes>

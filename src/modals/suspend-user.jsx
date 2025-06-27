@@ -36,7 +36,7 @@ const SuspendUser = ({ state, onClose }) => {
     <Dialog open={state.value}>
       <DialogContent
         showCloseButton={false}
-        className="w-full sm:max-w-[565px] p-8 md:p-10 rounded-2xl md:rounded-3xl bg-bg-2 border-none gap-[30px]"
+        className="w-full sm:max-w-[565px] p-5 md:p-[30px] rounded-2xl md:rounded-3xl bg-bg-2 border-none gap-[30px]"
       >
         <DialogHeader className="w-full max-w-[370px] mx-auto gap-[10px]">
           <DialogTitle className="text-text-1 text-2xl font-bold text-center">

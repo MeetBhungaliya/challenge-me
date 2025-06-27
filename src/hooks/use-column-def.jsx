@@ -1,13 +1,15 @@
 import { EyeonIcon } from "@/assets/icons/auth";
 import { PausecircleIcon, UseroctagonIcon } from "@/assets/icons/common";
 import { BannedIcon } from "@/assets/icons/dashbord";
+import { CheckCircleIcon, UnblockIcon } from "@/assets/icons/user-management";
 import Img from "@/components/ui/Img";
 import { breakpoints } from "@/constants/common";
 import { cn } from "@/lib/utils";
+import { USERMANAGEMENTTABS } from "@/routes/user-management";
 import { createColumnHelper } from "@tanstack/react-table";
 import moment from "moment";
 import { useMemo } from "react";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { useWindowSize } from "usehooks-ts";
 
 const TableText = ({ text, className, ...props }) => {
@@ -25,6 +27,7 @@ const TableText = ({ text, className, ...props }) => {
 };
 
 const useColumnDef = (helpers) => {
+  const [searchParams] = useSearchParams();
   const columnHelper = createColumnHelper();
 
   const { width = 0 } = useWindowSize();
@@ -88,38 +91,79 @@ const useColumnDef = (helpers) => {
         id: "actions-align-center",
         header: "Action",
         cell: (props) => (
-          <div className="w-max flex justify-end gap-x-2">
-            <Link
-              className="size-10 flex justify-center items-center rounded-full bg-bg-2"
-              to={`/user-management/${props.row?.original?.id}`}
-            >
-              <EyeonIcon className="size-5 text-text-1" />
-            </Link>
-            <button
-              type="button"
-              className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
-              onClick={helpers?.onAdminAssing}
-            >
-              <UseroctagonIcon className="size-5 text-text-1" />
-            </button>
-            <button
-              type="button"
-              className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
-            >
-              <PausecircleIcon className="size-5 text-text-1" />
-            </button>
-            <button
-              type="button"
-              className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
-              onClick={helpers?.onSuspendUser}
-            >
-              <BannedIcon className="size-5 text-[#FF0000]" />
-            </button>
+          <div className="flex justify-center gap-x-2">
+            {searchParams.get("tab") === USERMANAGEMENTTABS.at(0).value ? (
+              <>
+                <Link
+                  className="size-10 flex justify-center items-center rounded-full bg-bg-2"
+                  to={`/user-management/${props.row?.original?.id}`}
+                >
+                  <EyeonIcon className="size-5 text-text-1" />
+                </Link>
+                <button
+                  type="button"
+                  className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+                  onClick={helpers?.onAdminAssing}
+                >
+                  <UseroctagonIcon className="size-5 text-text-1" />
+                </button>
+                <button
+                  type="button"
+                  className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+                >
+                  <PausecircleIcon className="size-5 text-text-1" />
+                </button>
+                <button
+                  type="button"
+                  className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+                  onClick={helpers?.onSuspendUser}
+                >
+                  <BannedIcon className="size-5 text-[#FF0000]" />
+                </button>
+              </>
+            ) : searchParams.get("tab") === USERMANAGEMENTTABS.at(1).value ? (
+              <>
+                <button
+                  type="button"
+                  className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+                  onClick={helpers?.onSuspendUserDetail}
+                >
+                  <EyeonIcon className="size-5 text-text-1" />
+                </button>
+                <button
+                  type="button"
+                  className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+                >
+                  <CheckCircleIcon className="size-5 text-text-1" />
+                </button>
+                <button
+                  type="button"
+                  className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+                  onClick={helpers?.onSuspendUser}
+                >
+                  <BannedIcon className="size-5 text-[#FF0000]" />
+                </button>
+              </>
+            ) : searchParams.get("tab") === USERMANAGEMENTTABS.at(2).value ? (
+              <button
+                type="button"
+                className="size-10 flex justify-center items-center rounded-full bg-bg-2 cursor-pointer"
+              >
+                <UnblockIcon className="size-5 text-[#FF0000]" />
+              </button>
+            ) : (
+              <Link
+                className="size-10 flex justify-center items-center rounded-full bg-bg-2"
+                to={`/user-management/${props.row?.original?.id}`}
+              >
+                <EyeonIcon className="size-5 text-text-1" />
+              </Link>
+            )}
           </div>
         ),
       }),
     ],
-    [width]
+    [width, searchParams.get("tab")]
   );
 
   return {

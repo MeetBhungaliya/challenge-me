@@ -13,10 +13,10 @@ const AssignAdmin = ({ state, onClose }) => {
     onClose();
   };
   return (
-    <Dialog open={state.value}>
+    <Dialog open={state.value} onOpenChange={handleClose}>
       <DialogContent
         showCloseButton={false}
-        className="w-full sm:max-w-[456px] p-8 md:p-10 rounded-2xl md:rounded-3xl bg-bg-2 border-none"
+        className="w-full sm:max-w-[456px] p-5 md:p-[30px] rounded-2xl md:rounded-3xl bg-bg-2 border-none"
       >
         <AssignUserIcon className="size-[126px] mx-auto text-text-3" />
         <DialogHeader className="w-full max-w-[370px] mx-auto gap-[10px]">

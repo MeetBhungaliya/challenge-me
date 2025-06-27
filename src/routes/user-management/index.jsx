@@ -7,7 +7,9 @@ import useColumnDef from "@/hooks/use-column-def";
 import { cn } from "@/lib/utils";
 import AssignAdmin from "@/modals/assign-admin";
 import SuspendUser from "@/modals/suspend-user";
+import SuspendUserDetail from "@/modals/suspend-user-detail";
 import { faker } from "@faker-js/faker";
+import { on } from "events";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router";
@@ -35,6 +37,7 @@ export const USERMANAGEMENTTABS = [
 const UserManagement = () => {
   const assignAdmin = useBoolean(false);
   const suspendUser = useBoolean(false);
+  const suspendUserDetail = useBoolean(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searh67Form = useForm({
@@ -62,6 +65,7 @@ const UserManagement = () => {
   const { userProfileColumns } = useColumnDef({
     onAdminAssing: assignAdmin.setTrue,
     onSuspendUser: suspendUser.setTrue,
+    onSuspendUserDetail: suspendUserDetail.setTrue,
   });
 
   return (
@@ -113,6 +117,10 @@ const UserManagement = () => {
 
       <AssignAdmin state={assignAdmin} onClose={() => assignAdmin.setFalse()} />
       <SuspendUser state={suspendUser} onClose={() => suspendUser.setFalse()} />
+      <SuspendUserDetail
+        state={suspendUserDetail}
+        onClose={() => suspendUserDetail.setFalse()}
+      />
     </>
   );
 };
