@@ -1,6 +1,4 @@
-import {
-  DeleteCommentIcon
-} from "@/assets/icons/user-management";
+import { DeleteCategoryIcon } from "@/assets/icons/category-management";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,7 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-const DeleteComment = ({ state, onClose }) => {
+const DeleteCategory = ({ state, onClose }) => {
   const handleClose = () => {
     onClose();
   };
@@ -20,14 +18,13 @@ const DeleteComment = ({ state, onClose }) => {
         showCloseButton={false}
         className="w-full sm:max-w-[456px] p-5 md:p-[30px] rounded-2xl md:rounded-3xl bg-bg-2 border-none"
       >
-        <DeleteCommentIcon className="size-[126px] mx-auto text-text-3" />
+        <DeleteCategoryIcon className="size-[126px] mx-auto text-text-3" />
         <DialogHeader className="w-full max-w-[370px] mx-auto gap-[10px]">
           <DialogTitle className="text-text-1 text-2xl font-bold text-center">
-            Delete Comment
+            Delete Category
           </DialogTitle>
           <DialogDescription className="text-base sm:text-lg lg:text-xl text-text-2 text-center">
-            Are you sure you want to delete the comment from “Florencio
-            Dorrance”?
+            Are you sure you want to delete the “Fitness” category?
           </DialogDescription>
         </DialogHeader>
         <div className="mt-2 sm:mt-5 flex gap-x-3">
@@ -51,4 +48,4 @@ const DeleteComment = ({ state, onClose }) => {
   );
 };
 
-export default DeleteComment;
+export default DeleteCategory;

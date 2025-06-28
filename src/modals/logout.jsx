@@ -1,6 +1,5 @@
-import {
-  DeleteCommentIcon
-} from "@/assets/icons/user-management";
+import { DeleteCategoryIcon } from "@/assets/icons/category-management";
+import { SignoutModalIcon } from "@/assets/icons/sidebar";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,8 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useNavigate } from "react-router";
 
-const DeleteComment = ({ state, onClose }) => {
+const LogoutModal = ({ state, onClose }) => {
+  const navigate = useNavigate();
+
   const handleClose = () => {
     onClose();
   };
@@ -20,14 +22,13 @@ const DeleteComment = ({ state, onClose }) => {
         showCloseButton={false}
         className="w-full sm:max-w-[456px] p-5 md:p-[30px] rounded-2xl md:rounded-3xl bg-bg-2 border-none"
       >
-        <DeleteCommentIcon className="size-[126px] mx-auto text-text-3" />
+        <SignoutModalIcon className="size-[126px] mx-auto text-text-3" />
         <DialogHeader className="w-full max-w-[370px] mx-auto gap-[10px]">
           <DialogTitle className="text-text-1 text-2xl font-bold text-center">
-            Delete Comment
+            Sign Out
           </DialogTitle>
-          <DialogDescription className="text-base sm:text-lg lg:text-xl text-text-2 text-center">
-            Are you sure you want to delete the comment from “Florencio
-            Dorrance”?
+          <DialogDescription className="w-full max-w-[240px] mx-auto text-base sm:text-lg lg:text-xl text-text-2 text-center">
+            Are you sure you want to sign out ?
           </DialogDescription>
         </DialogHeader>
         <div className="mt-2 sm:mt-5 flex gap-x-3">
@@ -41,7 +42,7 @@ const DeleteComment = ({ state, onClose }) => {
           <Button
             type="button"
             className="flex-1 py-3 sm:py-3.5 rounded-full lg:rounded-3xl text-base md:text-lg font-semibold"
-            onClick={onClose}
+            onClick={() => navigate("/login")}
           >
             Yes
           </Button>
@@ -51,4 +52,4 @@ const DeleteComment = ({ state, onClose }) => {
   );
 };
 
-export default DeleteComment;
+export default LogoutModal;

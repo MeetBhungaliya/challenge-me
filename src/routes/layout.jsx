@@ -1,9 +1,18 @@
 import Header from "@/components/header";
 import Sidebar from "@/components/sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { Outlet } from "react-router";
+import { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router";
 
 const Layout = () => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+    navigate("/dashboard");
+  }, [pathname]);
+
   return (
     <SidebarProvider
       style={{

@@ -26,7 +26,9 @@ const Login = () => {
     defaultValues: { email: "", password: "" },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    navigate("/dashboard");
+  };
 
   return (
     <div className="h-dvh flex flex-col md:flex-row">

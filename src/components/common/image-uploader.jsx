@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 import Img from "../ui/Img";
 
-const ImageUploader = ({ name, label, control }) => {
+const ImageUploader = ({ name, label, control, noPadBg = false }) => {
   return (
     <Controller
       name={name}
@@ -37,7 +37,12 @@ const ImageUploader = ({ name, label, control }) => {
               )}
             >
               {value?.[0] ? (
-                <div className="h-full w-max p-4 rounded-xl aspect-square flex justify-center items-center relative bg-bg-3">
+                <div
+                  className={cn(
+                    "h-full w-max rounded-xl flex justify-center items-center relative",
+                    noPadBg ? "p-0 bg-transparent aspect-[205/120]" : "p-4 bg-bg-3 aspect-square"
+                  )}
+                >
                   <Img
                     src={
                       typeof value[0] === "string"
@@ -45,7 +50,10 @@ const ImageUploader = ({ name, label, control }) => {
                         : URL.createObjectURL(value[0])
                     }
                     alt="Uploaded"
-                    className="h-full max-w-full object-contain rounded-md"
+                    className={cn(
+                      "h-full max-w-full",
+                      noPadBg ? "object-cover rounded-xl" : "object-contain rounded-md"
+                    )}
                   />
                   <button
                     type="button"

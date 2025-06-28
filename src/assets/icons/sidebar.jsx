@@ -58,7 +58,7 @@ export const UserIcon = (props) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 export const ChallengeManagementIcon = (props) => (
   <svg
@@ -156,4 +156,82 @@ export const CategoryManagementIcon = (props) => (
       strokeLinecap="round"
     />
   </svg>
-)
+);
+
+export const SignoutIcon = (props) => (
+  <svg
+    viewBox="0 0 40 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M29.0667 24.3667L33.3333 20.1L29.0667 15.8333"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16.2666 20.1H33.2166"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M19.5999 33.3333C12.2333 33.3333 6.2666 28.3333 6.2666 20C6.2666 11.6667 12.2333 6.66667 19.5999 6.66667"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const SignoutModalIcon = (props) => (
+  <svg
+    viewBox="0 0 129 126"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <circle cx={123} cy={19} r={6} fill="currentColor" />
+    <circle cx={14} cy={7} r={7} fill="currentColor" />
+    <circle cx={7} cy={92} r={4} fill="currentColor" />
+    <circle cx={43} cy={123} r={3} fill="currentColor" />
+    <circle cx={85} cy={119} r={1} fill="currentColor" />
+    <circle cx={115} cy={111} r={2} fill="currentColor" />
+    <circle cx={120} cy={77} r={2} fill="currentColor" />
+    <circle cx={1} cy={52} r={1} fill="currentColor" />
+    <circle cx={74} cy={3} r={2} fill="currentColor" />
+    <circle cx={66} cy={63} r={50} fill="currentColor" />
+    <path
+      d="M75.0667 67.3664L79.3333 63.0997L75.0667 58.833"
+      stroke="white"
+      strokeWidth={2.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M62.2666 63.0996H79.2166"
+      stroke="white"
+      strokeWidth={2.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M65.5999 76.3336C58.2333 76.3336 52.2666 71.3336 52.2666 63.0003C52.2666 54.667 58.2333 49.667 65.5999 49.667"
+      stroke="white"
+      strokeWidth={2.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

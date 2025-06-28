@@ -14,25 +14,31 @@ import { Separator } from "@/components/ui/separator";
 import { MessageTextIcon } from "@/assets/icons/user-management";
 import ImageUploader from "@/components/common/image-uploader";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-import { BadgeIcon } from "@/assets/icons/sidebar";
+import { CategoryManagementIcon } from "@/assets/icons/sidebar";
 import { useEffect, useMemo } from "react";
+import { TagsInput } from "@/components/ui/tags-input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import { TagsIcon } from "@/assets/icons/category-management";
 
-const AddEditBadgeSchema = z.object({
+const AddEditCategorySchema = z.object({
   name: z.string().min(1, "Badge name is required"),
   description: z.string().min(1, "Description is required"),
+  tags: z.array(z.string()).min(1, "Minimum 1 tag is required"),
   image: z
     .any()
     .refine((file) => file && file.length > 0, "Badge image is required"),
 });
 
-const AddEditBadge = ({ state, data, onClose }) => {
+const AddEditCategory = ({ state, data, onClose }) => {
   const isEdit = useMemo(() => Boolean(data), [state.value]);
 
   const form = useForm({
-    resolver: zodResolver(AddEditBadgeSchema),
+    resolver: zodResolver(AddEditCategorySchema),
     defaultValues: {
       name: "",
       description: "",
+      tags: [],
       image: [],
     },
   });
@@ -46,7 +52,6 @@ const AddEditBadge = ({ state, data, onClose }) => {
     console.log(data);
     onClose();
   };
-
   return (
     <Dialog open={state.value}>
       <DialogContent
@@ -55,11 +60,11 @@ const AddEditBadge = ({ state, data, onClose }) => {
       >
         <DialogHeader className="w-full max-w-[370px] mx-auto gap-[10px]">
           <DialogTitle className="text-text-1 text-2xl font-bold text-center">
-            {isEdit ? " Edit" : "Add"} Badge
+            {isEdit ? " Edit" : "Add"} Category
           </DialogTitle>
           <VisuallyHidden.Root>
             <p className="text-base sm:text-lg lg:text-xl text-text-2 text-center">
-              Create a badge and upload image
+              Create a category and upload image
             </p>
           </VisuallyHidden.Root>
         </DialogHeader>
@@ -72,8 +77,10 @@ const AddEditBadge = ({ state, data, onClose }) => {
           >
             <Input
               name="name"
-              label="Badge name"
-              prefix={<BadgeIcon className="size-5 md:size-6 text-text-3" />}
+              label="Category name"
+              prefix={
+                <CategoryManagementIcon className="size-5 md:size-6 text-text-3" />
+              }
               className="bg-bg-3 !rounded-xl"
             />
             <Input
@@ -85,10 +92,50 @@ const AddEditBadge = ({ state, data, onClose }) => {
                 <MessageTextIcon className="size-5 md:size-6 text-text-3" />
               }
             />
+            <div className="space-y-1.5">
+              <Label
+                htmlFor="tags"
+                className="text-text-1 text-base font-normal"
+              >
+                Tags
+              </Label>
+              <div className="relative">
+                <div
+                  className={cn(
+                    "absolute flex items-center",
+                    "top-1/2 -translate-y-1/2 left-4 sm:left-5"
+                  )}
+                >
+                  <TagsIcon className="size-5 md:size-6 text-text-3" />
+                </div>
+                <TagsInput
+                  id="tags"
+                  value={form.watch("tags")}
+                  onValueChange={(e) =>
+                    form.setValue("tags", e, { shouldValidate: true })
+                  }
+                  className={cn(
+                    "py-3 sm:py-[14px] px-4 sm:px-6 border bg-bg-3 rounded-xl !text-base sm:!text-lg placeholder:text-text-4 placeholder:text-base sm:placeholder:text-lg ring-0",
+                    form.formState.errors?.tags?.message
+                      ? "text-red-400 border-red-400"
+                      : "text-text-1 border-bg-2",
+                    "pl-[46px] sm:pl-[55px]"
+                  )}
+                  inputClassName="text-sm sm:!text-base"
+                />
+              </div>
+              {form.formState.errors?.tags?.message && (
+                <p className="pl-3 text-xs text-red-400">
+                  {form.formState.errors?.tags?.message}
+                </p>
+              )}
+            </div>
+
             <ImageUploader
-              label="Upload badge"
+              label="Upload thumbnail"
               name="image"
               control={form.control}
+              noPadBg={true}
             />
             <div className="flex gap-x-3.5 md:gap-x-5">
               <Button
@@ -112,4 +159,4 @@ const AddEditBadge = ({ state, data, onClose }) => {
   );
 };
 
-export default AddEditBadge;
+export default AddEditCategory;
