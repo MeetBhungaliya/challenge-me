@@ -35,6 +35,9 @@ const Badges = () => {
         image: [
           "https://plus.unsplash.com/premium_photo-1714138490043-40cbd9d982dc?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFkZ2V8ZW58MHx8MHx8fDA%3D",
         ],
+        rarity: "123",
+        category: "123",
+        acquisition: "123",
       })),
     [searchParams.get("page"), searchParams.get("limit")]
   );

@@ -1,25 +1,29 @@
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { BadgeIcon } from "@/assets/icons/sidebar";
+import { MessageTextIcon } from "@/assets/icons/user-management";
+import ImageUploader from "@/components/common/image-uploader";
 import Input from "@/components/common/input";
+import Select from "@/components/common/select";
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Form } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
-import { MessageTextIcon } from "@/assets/icons/user-management";
-import ImageUploader from "@/components/common/image-uploader";
+import { zodResolver } from "@hookform/resolvers/zod";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-import { BadgeIcon } from "@/assets/icons/sidebar";
 import { useEffect, useMemo } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const AddEditBadgeSchema = z.object({
   name: z.string().min(1, "Badge name is required"),
   description: z.string().min(1, "Description is required"),
+  rarity: z.string().min(1, "Badge rarity is required"),
+  category: z.string().min(1, "Badge category is required"),
+  acquisition: z.string().min(1, "Condition for acquisition is required"),
   image: z
     .any()
     .refine((file) => file && file.length > 0, "Badge image is required"),
@@ -33,6 +37,9 @@ const AddEditBadge = ({ state, data, onClose }) => {
     defaultValues: {
       name: "",
       description: "",
+      rarity: "",
+      category: "",
+      acquisition: "",
       image: [],
     },
   });
@@ -84,6 +91,29 @@ const AddEditBadge = ({ state, data, onClose }) => {
               prefix={
                 <MessageTextIcon className="size-5 md:size-6 text-text-3" />
               }
+            />
+            <div className="flex gap-x-6">
+              <Select
+                name="rarity"
+                label="Badge rarity"
+                prefix={<BadgeIcon className="size-5 md:size-6 text-text-3" />}
+                options={[{ label: "option 1", value: "123" }]}
+                className="h-[58px] bg-bg-3 !rounded-xl"
+              />
+              <Select
+                name="category"
+                label="Badge category"
+                prefix={<BadgeIcon className="size-5 md:size-6 text-text-3" />}
+                options={[{ label: "option 1", value: "123" }]}
+                className="h-[58px] bg-bg-3 !rounded-xl"
+              />
+            </div>
+            <Select
+              name="acquisition"
+              label="Condition for acquisition"
+              prefix={<BadgeIcon className="size-5 md:size-6 text-text-3" />}
+              options={[{ label: "option 1", value: "123" }]}
+              className="h-[58px] bg-bg-3 !rounded-xl"
             />
             <ImageUploader
               label="Upload badge"
